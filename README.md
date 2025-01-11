@@ -1,6 +1,6 @@
 # Helm Chart Repo
 
-[![](https://github.com/helm/notHiks/workflows/Release%20Charts/badge.svg?branch=main)](https://github.com/helm/notHiks/actions)
+[![](https://github.com/notHiks/charts/actions/workflows/release.yaml/badge.svg?branch=main)](https://github.com/notHiks/charts/actions)
 
 Example project to demo testing and hosting a chart repository with GitHub Pages and Actions.
 
