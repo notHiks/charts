@@ -1,4 +1,2 @@
-redis:
+airflow:
   enabled: true
-  cluster:
-    enabled: false
