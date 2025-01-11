@@ -1,5 +1,21 @@
 apiVersion: v1
 entries:
+  example-v2:
+  - apiVersion: v2
+    appVersion: "1.0"
+    created: "2025-01-11T17:34:09.166123778Z"
+    description: A Helm chart for Kubernetes
+    digest: 23e80b8335b2d02ce48bb4ec8505107bb7b7226b15a27755d04ad8c58177c321
+    home: https://helm.sh/helm
+    maintainers:
+    - email: email@example.com
+      name: Name
+    name: example-v2
+    sources:
+    - https://github.com/helm/helm
+    urls:
+    - https://github.com/notHiks/charts/releases/download/example-v2-0.2.8/example-v2-0.2.8.tgz
+    version: 0.2.8
   piraeus-operator:
   - apiVersion: v2
     appVersion: 2.7.1
@@ -11,4 +27,4 @@ entries:
     urls:
     - https://github.com/notHiks/charts/releases/download/piraeus-operator-0.1.0/piraeus-operator-0.1.0.tgz
     version: 0.1.0
-generated: "2025-01-11T16:53:31.499859072Z"
+generated: "2025-01-11T17:34:09.166134227Z"
