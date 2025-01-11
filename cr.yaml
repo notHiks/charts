@@ -1,6 +1,8 @@
 # Set to true for GPG signing
-sign: true
+sign: False
 # UID of the GPG key to use
 key: Chart Releaser Test Key
+# Repro Owner
 owner: nohiks
+#Base url
 git-base-url: https://api.github.com/
