@@ -10,7 +10,7 @@ sources:
   - https://github.com/helm/charts-repo-actions-demo
 version: 0.1.8
 dependencies:
-  - name: redis
-    version: 20.6.1
+  - name: airflow
+    version: 2.10.4
     repository: https://charts.bitnami.com/bitnami
-    condition: redis.enabled
+    condition: airflow.enabled
