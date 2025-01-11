@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  piraeus-operator:
+  - apiVersion: v2
+    appVersion: 2.7.1
+    created: "2025-01-11T16:53:31.499848412Z"
+    description: A Helm chart for Kubernetes
+    digest: d2d27c04259cd5272a5c7b9020a1a42b24aa523fa48df38a6b09686b76816cf5
+    name: piraeus-operator
+    type: application
+    urls:
+    - https://github.com/notHiks/charts/releases/download/piraeus-operator-0.1.0/piraeus-operator-0.1.0.tgz
+    version: 0.1.0
+generated: "2025-01-11T16:53:31.499859072Z"
