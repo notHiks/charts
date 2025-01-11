@@ -1,6 +1,6 @@
-# Charts Repo Actions Demo
+# Helm Chart Repo
 
-[![](https://github.com/helm/charts-repo-actions-demo/workflows/Release%20Charts/badge.svg?branch=main)](https://github.com/helm/charts-repo-actions-demo/actions)
+[![](https://github.com/helm/notHiks/workflows/Release%20Charts/badge.svg?branch=main)](https://github.com/helm/notHiks/actions)
 
 Example project to demo testing and hosting a chart repository with GitHub Pages and Actions.
 
@@ -18,8 +18,7 @@ Example project to demo testing and hosting a chart repository with GitHub Pages
 
 * `charts/example-v1`: Sample chart with API version v1
 * `charts/example-v2`: Sample chart with API version v2
-* `charts/dependencies-v1`: Simple chart with API version v1 to test dependencies from an external Charts repo
-* `charts/dependencies-v2`: Simple chart with API version v2 to test dependencies from an external Charts repo
+* `charts/piraeus-operator`: Simple chart with API version v1 to test dependencies from an external Charts repo
 
 ## How-To
 
