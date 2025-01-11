@@ -1,0 +1,109 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  name: {{ include "piraeus-operator.fullname" . }}-validating-webhook-configuration
+  annotations:
+    cert-manager.io/inject-ca-from: {{ .Release.Namespace }}/{{ include "piraeus-operator.fullname" . }}-
+  labels:
+  {{- include "piraeus-operator.labels" . | nindent 4 }}
+webhooks:
+- admissionReviewVersions:
+  - v1
+  clientConfig:
+    service:
+      name: '{{ include "piraeus-operator.fullname" . }}-webhook-service'
+      namespace: '{{ .Release.Namespace }}'
+      path: /validate-piraeus-io-v1-linstorcluster
+  failurePolicy: Fail
+  name: vlinstorcluster.kb.io
+  rules:
+  - apiGroups:
+    - piraeus.io
+    apiVersions:
+    - v1
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - linstorclusters
+  sideEffects: None
+- admissionReviewVersions:
+  - v1
+  clientConfig:
+    service:
+      name: '{{ include "piraeus-operator.fullname" . }}-webhook-service'
+      namespace: '{{ .Release.Namespace }}'
+      path: /validate-piraeus-io-v1-linstornodeconnection
+  failurePolicy: Fail
+  name: vlinstornodeconnection.kb.io
+  rules:
+  - apiGroups:
+    - piraeus.io
+    apiVersions:
+    - v1
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - linstornodeconnections
+  sideEffects: None
+- admissionReviewVersions:
+  - v1
+  clientConfig:
+    service:
+      name: '{{ include "piraeus-operator.fullname" . }}-webhook-service'
+      namespace: '{{ .Release.Namespace }}'
+      path: /validate-piraeus-io-v1-linstorsatellite
+  failurePolicy: Fail
+  name: vlinstorsatellite.kb.io
+  rules:
+  - apiGroups:
+    - piraeus.io
+    apiVersions:
+    - v1
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - linstorsatellites
+  sideEffects: None
+- admissionReviewVersions:
+  - v1
+  clientConfig:
+    service:
+      name: '{{ include "piraeus-operator.fullname" . }}-webhook-service'
+      namespace: '{{ .Release.Namespace }}'
+      path: /validate-piraeus-io-v1-linstorsatelliteconfiguration
+  failurePolicy: Fail
+  name: vlinstorsatelliteconfiguration.kb.io
+  rules:
+  - apiGroups:
+    - piraeus.io
+    apiVersions:
+    - v1
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - linstorsatelliteconfigurations
+  sideEffects: None
+- admissionReviewVersions:
+  - v1
+  clientConfig:
+    service:
+      name: '{{ include "piraeus-operator.fullname" . }}-webhook-service'
+      namespace: '{{ .Release.Namespace }}'
+      path: /validate-storage-k8s-io-v1-storageclass
+  failurePolicy: Fail
+  name: vstorageclass.kb.io
+  rules:
+  - apiGroups:
+    - storage.k8s.io
+    apiVersions:
+    - v1
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - storageclasses
+  sideEffects: None

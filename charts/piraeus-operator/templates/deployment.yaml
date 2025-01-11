@@ -1,0 +1,146 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "piraeus-operator.fullname" . }}-controller-manager
+  labels:
+    app.kubernetes.io/component: piraeus-operator
+  {{- include "piraeus-operator.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.controllerManager.replicas }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: piraeus-operator
+      app.kubernetes.io/name: piraeus-datastore
+    {{- include "piraeus-operator.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: piraeus-operator
+        app.kubernetes.io/name: piraeus-datastore
+      {{- include "piraeus-operator.selectorLabels" . | nindent 8 }}
+      annotations:
+        kubectl.kubernetes.io/default-container: manager
+    spec:
+      containers:
+      - args: {{- toYaml .Values.controllerManager.manager.args | nindent 8 }}
+        command:
+        - /manager
+        env:
+        - name: NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: IMAGE_CONFIG_MAP_NAME
+          value: {{ quote .Values.controllerManager.manager.env.imageConfigMapName }}
+        - name: KUBERNETES_CLUSTER_DOMAIN
+          value: {{ quote .Values.kubernetesClusterDomain }}
+        image: {{ .Values.controllerManager.manager.image.repository }}:{{ .Values.controllerManager.manager.image.tag
+          | default .Chart.AppVersion }}
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8081
+          initialDelaySeconds: 15
+          periodSeconds: 20
+        name: manager
+        ports:
+        - containerPort: 9443
+          name: webhook-server
+          protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: 8081
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        resources: {{- toYaml .Values.controllerManager.manager.resources | nindent 10
+          }}
+        securityContext: {{- toYaml .Values.controllerManager.manager.containerSecurityContext
+          | nindent 10 }}
+        volumeMounts:
+        - mountPath: /tmp/k8s-webhook-server/serving-certs
+          name: cert
+          readOnly: true
+      priorityClassName: system-cluster-critical
+      securityContext: {{- toYaml .Values.controllerManager.podSecurityContext | nindent
+        8 }}
+      serviceAccountName: {{ include "piraeus-operator.fullname" . }}-controller-manager
+      terminationGracePeriodSeconds: 10
+      tolerations:
+      - effect: NoSchedule
+        key: drbd.linbit.com/lost-quorum
+      - effect: NoSchedule
+        key: drbd.linbit.com/force-io-error
+      volumes:
+      - name: cert
+        secret:
+          defaultMode: 420
+          secretName: webhook-server-cert
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "piraeus-operator.fullname" . }}-gencert
+  labels:
+    app.kubernetes.io/component: piraeus-operator-gencert
+  {{- include "piraeus-operator.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.gencert.replicas }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: piraeus-operator-gencert
+      app.kubernetes.io/name: piraeus-datastore
+    {{- include "piraeus-operator.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: piraeus-operator-gencert
+        app.kubernetes.io/name: piraeus-datastore
+      {{- include "piraeus-operator.selectorLabels" . | nindent 8 }}
+      annotations:
+        kubectl.kubernetes.io/default-container: gencert
+    spec:
+      containers:
+      - args: {{- toYaml .Values.gencert.gencert.args | nindent 8 }}
+        command:
+        - /gencert
+        env:
+        - name: NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: WEBHOOK_CONFIGURATION_NAME
+          value: {{ quote .Values.gencert.gencert.env.webhookConfigurationName }}
+        - name: WEBHOOK_SERVICE_NAME
+          value: {{ quote .Values.gencert.gencert.env.webhookServiceName }}
+        - name: WEBHOOK_TLS_SECRET_NAME
+          value: {{ quote .Values.gencert.gencert.env.webhookTlsSecretName }}
+        - name: KUBERNETES_CLUSTER_DOMAIN
+          value: {{ quote .Values.kubernetesClusterDomain }}
+        image: {{ .Values.gencert.gencert.image.repository }}:{{ .Values.gencert.gencert.image.tag
+          | default .Chart.AppVersion }}
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8081
+          initialDelaySeconds: 15
+          periodSeconds: 20
+        name: gencert
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: 8081
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        resources: {{- toYaml .Values.gencert.gencert.resources | nindent 10 }}
+        securityContext: {{- toYaml .Values.gencert.gencert.containerSecurityContext |
+          nindent 10 }}
+      priorityClassName: system-cluster-critical
+      securityContext: {{- toYaml .Values.gencert.podSecurityContext | nindent 8 }}
+      serviceAccountName: {{ include "piraeus-operator.fullname" . }}-gencert
+      terminationGracePeriodSeconds: 10
+      tolerations:
+      - effect: NoSchedule
+        key: drbd.linbit.com/lost-quorum
+      - effect: NoSchedule
+        key: drbd.linbit.com/force-io-error

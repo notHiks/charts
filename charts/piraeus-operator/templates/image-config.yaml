@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "piraeus-operator.fullname" . }}-image-config
+  labels:
+  {{- include "piraeus-operator.labels" . | nindent 4 }}
+data:
+  0_piraeus_datastore_images.yaml: {{ .Values.imageConfig.0PiraeusDatastoreImagesYaml
+    | toYaml | indent 1 }}
+  0_sig_storage_images.yaml: {{ .Values.imageConfig.0SigStorageImagesYaml | toYaml
+    | indent 1 }}
