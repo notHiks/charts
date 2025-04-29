@@ -1,0 +1,34 @@
+flaresolverr:
+  flaresolverr:
+    env:
+      tz: Etc/UTC
+    image:
+      repository: ghcr.io/flaresolverr/flaresolverr
+      tag: latest
+  ports:
+  - name: "8191"
+    port: 8191
+    targetPort: 8191
+  replicas: 1
+  type: ClusterIP
+kubernetesClusterDomain: cluster.local
+pvc:
+  claim0:
+    storageRequest: 100Mi
+suwayomi:
+  ports:
+  - name: "4567"
+    port: 4567
+    targetPort: 4567
+  replicas: 1
+  strategy:
+    type: Recreate
+  suwayomi:
+    env:
+      flaresolverrEnabled: "true"
+      flaresolverrUrl: http://flaresolverr:8191
+      tz: Etc/UTC
+    image:
+      repository: ghcr.io/suwayomi/tachidesk
+      tag: preview
+  type: ClusterIP

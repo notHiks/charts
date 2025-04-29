@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "docker-app.fullname" . }}-suwayomi
+  labels:
+    io.kompose.service: suwayomi
+  {{- include "docker-app.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.suwayomi.replicas }}
+  strategy:
+    type: {{ .Values.suwayomi.strategy.type | quote }}
+  selector:
+    matchLabels:
+      io.kompose.service: suwayomi
+    {{- include "docker-app.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        io.kompose.service: suwayomi
+      {{- include "docker-app.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+      - env:
+        - name: FLARESOLVERR_ENABLED
+          value: {{ quote .Values.suwayomi.suwayomi.env.flaresolverrEnabled }}
+        - name: FLARESOLVERR_URL
+          value: {{ quote .Values.suwayomi.suwayomi.env.flaresolverrUrl }}
+        - name: TZ
+          value: {{ quote .Values.suwayomi.suwayomi.env.tz }}
+        - name: KUBERNETES_CLUSTER_DOMAIN
+          value: {{ quote .Values.kubernetesClusterDomain }}
+        image: {{ .Values.suwayomi.suwayomi.image.repository }}:{{ .Values.suwayomi.suwayomi.image.tag
+          | default .Chart.AppVersion }}
+        name: suwayomi
+        ports:
+        - containerPort: 4567
+          protocol: TCP
+        resources: {}
+        volumeMounts:
+        - mountPath: /home/suwayomi/.local/share/Tachidesk
+          name: suwayomi-claim0
+      restartPolicy: Always
+      volumes:
+      - name: suwayomi-claim0
+        persistentVolumeClaim:
+          claimName: {{ include "docker-app.fullname" . }}-claim0
