@@ -1,5 +1,16 @@
 apiVersion: v1
 entries:
+  docker-app:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2025-04-29T23:35:17.606008127Z"
+    description: A Helm chart for Kubernetes
+    digest: 61786b74090be2e4ba869ad5f66c1e40544e37cd1c066c63e0db8f186b065815
+    name: docker-app
+    type: application
+    urls:
+    - https://github.com/notHiks/charts/releases/download/docker-app-0.1.0/docker-app-0.1.0.tgz
+    version: 0.1.0
   example-v1:
   - apiVersion: v1
     appVersion: "3.9"
@@ -43,4 +54,4 @@ entries:
     urls:
     - https://github.com/notHiks/charts/releases/download/piraeus-operator-0.1.0/piraeus-operator-0.1.0.tgz
     version: 0.1.0
-generated: "2025-01-11T17:36:06.037426489Z"
+generated: "2025-04-29T23:35:17.606014379Z"
