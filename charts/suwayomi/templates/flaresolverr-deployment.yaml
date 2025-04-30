@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "docker-app.fullname" . }}-flaresolverr
+  labels:
+    io.kompose.service: flaresolverr
+  {{- include "docker-app.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.flaresolverr.replicas }}
+  selector:
+    matchLabels:
+      io.kompose.service: flaresolverr
+    {{- include "docker-app.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        io.kompose.service: flaresolverr
+      {{- include "docker-app.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+      - env:
+        - name: TZ
+          value: {{ quote .Values.flaresolverr.flaresolverr.env.tz }}
+        - name: KUBERNETES_CLUSTER_DOMAIN
+          value: {{ quote .Values.kubernetesClusterDomain }}
+        image: {{ .Values.flaresolverr.flaresolverr.image.repository }}:{{ .Values.flaresolverr.flaresolverr.image.tag
+          | default .Chart.AppVersion }}
+        name: flaresolverr
+        ports:
+        - containerPort: 8191
+          protocol: TCP
+        resources: {}
+      restartPolicy: Always

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "docker-app.fullname" . }}-suwayomi
+  labels:
+    io.kompose.service: suwayomi
+  {{- include "docker-app.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.suwayomi.type }}
+  selector:
+    io.kompose.service: suwayomi
+    {{- include "docker-app.selectorLabels" . | nindent 4 }}
+  ports:
+  {{- .Values.suwayomi.ports | toYaml | nindent 2 }}
