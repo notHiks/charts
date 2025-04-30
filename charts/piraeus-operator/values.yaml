@@ -56,7 +56,7 @@ gencert:
   serviceAccount:
     annotations: {}
 imageConfig:
-  0PiraeusDatastoreImagesYaml: |-
+  PiraeusDatastoreImagesYaml: |-
     ---
     # This is the configuration for default images used by piraeus-operator
     #
@@ -135,7 +135,7 @@ imageConfig:
             image: drbd9-bullseye
           - osImage: Debian GNU/Linux 10
             image: drbd9-buster
-  0SigStorageImagesYaml: |-
+  SigStorageImagesYaml: |-
     ---
     base: registry.k8s.io/sig-storage
     components:
