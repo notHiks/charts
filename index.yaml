@@ -46,6 +46,17 @@ entries:
   piraeus-operator:
   - apiVersion: v2
     appVersion: 2.7.1
+    created: "2025-04-30T15:16:49.960796232Z"
+    description: A Helm chart for The Piraeus Operator which manages LINSTOR clusters
+      in Kubernetes. Version 2.7.1
+    digest: 09bd2914e73be72f8bcf4654bec030bd8541dc928370a8dd795881ed14360bbb
+    name: piraeus-operator
+    type: application
+    urls:
+    - https://github.com/notHiks/charts/releases/download/piraeus-operator-0.1.1/piraeus-operator-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 2.7.1
     created: "2025-01-11T16:53:31.499848412Z"
     description: A Helm chart for Kubernetes
     digest: d2d27c04259cd5272a5c7b9020a1a42b24aa523fa48df38a6b09686b76816cf5
@@ -54,4 +65,4 @@ entries:
     urls:
     - https://github.com/notHiks/charts/releases/download/piraeus-operator-0.1.0/piraeus-operator-0.1.0.tgz
     version: 0.1.0
-generated: "2025-04-29T23:35:17.606014379Z"
+generated: "2025-04-30T15:16:49.960809226Z"
