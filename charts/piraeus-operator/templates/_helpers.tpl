@@ -46,7 +46,8 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 Selector labels
 */}}
 {{- define "piraeus-operator.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "piraeus-operator.name" . }}
+app.kubernetes.io/component: piraeus-operator
+app.kubernetes.io/name: piraeus-datastore
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
@@ -58,5 +59,16 @@ Create the name of the service account to use
 {{- default (include "piraeus-operator.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
+{{- end }}
+{{- end }}
+
+{{/*
+Certificate secret name
+*/}}
+{{- define "piraeus-operator.certifcateName" -}}
+{{- if .Values.tls.certificateSecret }}
+{{- .Values.tls.certificateSecret }}
+{{- else }}
+{{- include "piraeus-operator.fullname" . }}-tls
 {{- end }}
 {{- end }}

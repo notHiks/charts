@@ -3,12 +3,12 @@ kind: Service
 metadata:
   name: {{ include "piraeus-operator.fullname" . }}-webhook-service
   labels:
-  {{- include "piraeus-operator.labels" . | nindent 4 }}
+    {{- include "piraeus-operator.labels" . | nindent 4 }}
 spec:
-  type: {{ .Values.webhookService.type }}
+  type: ClusterIP
   selector:
-    app.kubernetes.io/component: piraeus-operator
-    app.kubernetes.io/name: piraeus-datastore
     {{- include "piraeus-operator.selectorLabels" . | nindent 4 }}
   ports:
-  {{- .Values.webhookService.ports | toYaml | nindent 2 }}
+    - name: https
+      port: 443
+      targetPort: 9443
