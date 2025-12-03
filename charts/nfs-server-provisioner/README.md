@@ -57,7 +57,7 @@ their default values.
 |:-------------------------------|:----------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------|
 | `extraArgs` | [Additional command line arguments](https://github.com/kubernetes-incubator/external-storage/blob/HEAD/nfs/docs/deployment.md#arguments) | `{}`
 | `imagePullSecrets`             | Specify image pull secrets                                                                                      | `nil` (does not add image pull secrets to deployed pods) |
-| `image.repository`             | The image repository to pull from                                                                               | `registry.k8s.io/sig-storage/nfs-provisioner:v6.5`         |
+| `image.repository`             | The image repository to pull from                                                                               | `registry.k8s.io/sig-storage/nfs-provisioner:v6.5.0`         |
 | `image.tag`                    | The image tag to pull                                                                                           | `v6.5`                                                 |
 | `image.digest`                 | The image digest to pull, this option has precedence over `image.tag`                                           | `nil`                                                    |
 | `image.pullPolicy`             | Image pull policy                                                                                               | `IfNotPresent`                                           |
