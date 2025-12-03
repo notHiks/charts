@@ -19,7 +19,7 @@ operator:
   options:
     leaderElect: true
 
-  resources: { }
+  resources: {}
     # limits:
     #   cpu: 100m
     #   memory: 128Mi
@@ -44,7 +44,7 @@ kubeRbacProxy:
     runAsNonRoot: true
     runAsUser: 1000
 
-  resources: { }
+  resources: {}
     # limits:
     #   cpu: 100m
     #   memory: 128Mi
@@ -62,7 +62,7 @@ tls:
   renew: false
   certManagerIssuerRef: {}
 
-imagePullSecrets: [ ]
+imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
@@ -70,7 +70,7 @@ serviceAccount:
   # Specifies whether a service account should be created
   create: true
   # Annotations to add to the service account
-  annotations: { }
+  annotations: {}
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
   name: ""
@@ -79,12 +79,12 @@ rbac:
   # Specifies whether RBAC resources should be created
   create: true
 
-podAnnotations: { }
+podAnnotations: {}
 
 podSecurityContext: {}
   # fsGroup: 2000
 
-nodeSelector: { }
+nodeSelector: {}
 
 tolerations:
   - key: drbd.linbit.com/lost-quorum
