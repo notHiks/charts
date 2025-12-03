@@ -17,7 +17,6 @@ data:
     #   quay.io/piraeusdatastore/piraeus-server:v1.24.2
     components:
       linstor-controller:
-<<<<<<< HEAD
         tag: v1.31.0
         image: piraeus-server
       linstor-satellite:
@@ -25,15 +24,6 @@ data:
         image: piraeus-server
       linstor-csi:
         tag: v1.7.1
-=======
-        tag: v1.30.4
-        image: piraeus-server
-      linstor-satellite:
-        tag: v1.30.4
-        image: piraeus-server
-      linstor-csi:
-        tag: v1.7.0
->>>>>>> origin/main
         image: piraeus-csi
       drbd-reactor:
         tag: v1.8.0
@@ -99,11 +89,7 @@ data:
     base: registry.k8s.io/sig-storage
     components:
       csi-attacher:
-<<<<<<< HEAD
         tag: v4.8.1
-=======
-        tag: v4.8.0
->>>>>>> origin/main
         image: csi-attacher
       csi-livenessprobe:
         tag: v2.15.0
@@ -112,17 +98,10 @@ data:
         tag: v5.2.0
         image: csi-provisioner
       csi-snapshotter:
-<<<<<<< HEAD
         tag: v8.2.1
         image: csi-snapshotter
       csi-resizer:
         tag: v1.13.2
-=======
-        tag: v8.2.0
-        image: csi-snapshotter
-      csi-resizer:
-        tag: v1.13.1
->>>>>>> origin/main
         image: csi-resizer
       csi-external-health-monitor-controller:
         tag: v0.14.0
