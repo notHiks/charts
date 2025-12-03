@@ -91,7 +91,7 @@ tolerations:
     effect: NoSchedule
   - key: drbd.linbit.com/force-io-error
     effect: NoSchedule
-affinity: { }
+affinity: {}
 
 priorityClassName: ""
 
