@@ -7,7 +7,7 @@ replicaCount: 1
 # imagePullSecrets:
 
 image:
-  repository:  ghcr.io/hi-fi/nfs-ganesha
+  repository: ghcr.io/hi-fi/nfs-ganesha
   tag: v6.5
   # digest:
   pullPolicy: IfNotPresent
