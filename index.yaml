@@ -45,6 +45,28 @@ entries:
     version: 0.2.8
   piraeus:
   - apiVersion: v2
+    appVersion: v2.9.1
+    created: "2025-12-07T00:11:24.980127272Z"
+    description: 'The Piraeus Operator manages software defined storage clusters using
+      LINSTOR in Kubernetes. '
+    digest: 299ea268cea2c866efce6005ffde7a35e02095a5847852c585d83b03cf184a29
+    home: https://piraeus.io
+    icon: https://raw.githubusercontent.com/piraeusdatastore/piraeus/master/artwork/sandbox-artwork/icon/color.svg
+    keywords:
+    - storage
+    maintainers:
+    - name: Piraeus Datastore
+      url: https://piraeus.io
+    name: piraeus
+    sources:
+    - https://github.com/piraeusdatastore/piraeus-operator
+    - https://github.com/piraeusdatastore/linstor-csi
+    - https://github.com/LINBIT/linstor-server
+    type: application
+    urls:
+    - https://github.com/notHiks/charts/releases/download/piraeus-2.9.1/piraeus-2.9.1.tgz
+    version: 2.9.1
+  - apiVersion: v2
     appVersion: v2.8.1
     created: "2025-12-03T23:15:00.022086797Z"
     description: 'The Piraeus Operator manages software defined storage clusters using
@@ -132,4 +154,4 @@ entries:
     urls:
     - https://github.com/notHiks/charts/releases/download/piraeus-operator-0.1.0/piraeus-operator-0.1.0.tgz
     version: 0.1.0
-generated: "2025-12-03T23:15:00.022111506Z"
+generated: "2025-12-07T00:11:24.980145997Z"
