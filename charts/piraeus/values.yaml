@@ -19,7 +19,7 @@ operator:
 
   options:
     leaderElect: true
-    #clusterApiKubeconfig: "" # set to "<none>" to disable ClusterAPI integration
+    # clusterApiKubeconfig: "" # set to "<none>" to disable ClusterAPI integration
 
   resources: {}
     # limits:
@@ -87,7 +87,7 @@ podLabels: {}
 podSecurityContext: {}
   # fsGroup: 2000
 
-nodeSelector: { }
+nodeSelector: {}
 
 tolerations:
   - key: drbd.linbit.com/lost-quorum
