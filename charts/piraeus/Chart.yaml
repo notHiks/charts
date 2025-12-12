@@ -1,9 +1,5 @@
 apiVersion: v2
-<<<<<<< HEAD
 appVersion: v2.10.3
-=======
-appVersion: v2.10.2
->>>>>>> origin/main
 description: 'The Piraeus Operator manages software defined storage clusters using
   LINSTOR in Kubernetes. '
 home: https://piraeus.io
@@ -19,8 +15,4 @@ sources:
 - https://github.com/piraeusdatastore/linstor-csi
 - https://github.com/LINBIT/linstor-server
 type: application
-<<<<<<< HEAD
 version: 2.10.3
-=======
-version: 2.10.2
->>>>>>> origin/main
