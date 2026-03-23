@@ -30,7 +30,7 @@ operator:
     #   memory: 128Mi
 
   ## Additional volume mounts
-  extraVolumeMounts: []
+  extraVolumeMounts: [ ]
   # - name: clusterapi-kubeconfig
   #   mountPath: /etc/operator
   #   readOnly: true
@@ -61,7 +61,7 @@ kubeRbacProxy:
     #   memory: 128Mi
 
   ## Additional volume mounts
-  extraVolumeMounts: []
+  extraVolumeMounts: [ ]
 
 
 ## Additional volumes
@@ -80,7 +80,7 @@ tls:
   renew: false
   certManagerIssuerRef: {}
 
-imagePullSecrets: []
+imagePullSecrets: [ ]
 nameOverride: ""
 fullnameOverride: ""
 
